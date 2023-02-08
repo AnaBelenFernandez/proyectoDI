@@ -28,8 +28,22 @@ namespace ProyectoIntermodular
 
             foreach(Guardia guardia in _negocio.ObtenerGuardias())
             {
-                ListViewItem item = new ListViewItem(new string[] { });
-                //item.tag=
+                string enumText=string.Empty;
+                switch (guardia.Estado)
+                {
+                    case EstadoEnum.R:
+                        enumText = "Realizado";
+                        break;
+                    case EstadoEnum.C:
+                        enumText = "Confirmada y pendiente";
+                        break;
+                    case EstadoEnum.A:
+                        enumText = "Anulada";
+                        break;
+                }
+
+                ListViewItem item = new ListViewItem(new string[] {_negocio.ObtenerNombreProfesor(guardia.IdProfesorFalta), _negocio.ObtenerNombreProfesor(guardia.IdProfesorGuardia), enumText, guardia.Fecha.ToString(),});
+                item.Tag = guardia;
                 lvwGuardias.Items.Add(item);
             }
         }

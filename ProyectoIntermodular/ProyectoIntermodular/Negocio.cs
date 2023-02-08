@@ -12,11 +12,13 @@ namespace ProyectoIntermodular
         { 
         }
 
+        // comprueba si el usuario y contraseña son correctas
         public bool ComprobarUsuario()
         {
             throw new NotImplementedException();
         }
 
+        //obtiene una lista de guardias ordenadas por fecha
         public List<Guardia> ObtenerGuardias()
         {
             throw new NotImplementedException();
@@ -38,6 +40,17 @@ namespace ProyectoIntermodular
         }
 
         public void BorrarGuardia(int guardiaId)
+        {
+            throw new NotImplementedException();
+        }
+
+        // obtiene nombre y apellidos del profesor en base a la Id de un profesor
+        public string ObtenerNombreProfesor(int idProfesor)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int ObtenerIdProfesor(string nombreProfesor)
         {
             throw new NotImplementedException();
         }

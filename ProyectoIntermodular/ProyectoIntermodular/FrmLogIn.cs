@@ -15,12 +15,31 @@ namespace ProyectoIntermodular
         public FrmLogIn()
         {
             InitializeComponent();
-            this.DialogResult = DialogResult.Cancel;
+            grpError.Visible = false;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnLogIn_Click(object sender, EventArgs e)
         {
+            if (ValidarUsuario())
+            {
+                FrmContenedor contenedor = new FrmContenedor();
+                contenedor.ShowDialog();
+                
+            }
+            else
+            {
+                grpError.Visible = true;
+            }
+        }
 
+        private string[] Encriptar()
+        {
+            throw new NotImplementedException();
+        }
+
+        private bool ValidarUsuario()
+        {
+            return true;
         }
     }
 }
