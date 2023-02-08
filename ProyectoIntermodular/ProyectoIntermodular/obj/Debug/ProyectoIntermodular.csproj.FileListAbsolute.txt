@@ -1,0 +1,14 @@
+C:\codigo\DI_Intermodular\ProyectoIntermodular\ProyectoIntermodular\bin\Debug\ProyectoIntermodular.exe.config
+C:\codigo\DI_Intermodular\ProyectoIntermodular\ProyectoIntermodular\bin\Debug\ProyectoIntermodular.exe
+C:\codigo\DI_Intermodular\ProyectoIntermodular\ProyectoIntermodular\bin\Debug\ProyectoIntermodular.pdb
+C:\codigo\DI_Intermodular\ProyectoIntermodular\ProyectoIntermodular\obj\Debug\ProyectoIntermodular.csproj.AssemblyReference.cache
+C:\codigo\DI_Intermodular\ProyectoIntermodular\ProyectoIntermodular\obj\Debug\ProyectoIntermodular.csproj.SuggestedBindingRedirects.cache
+C:\codigo\DI_Intermodular\ProyectoIntermodular\ProyectoIntermodular\obj\Debug\ProyectoIntermodular.FrmContenedor.resources
+C:\codigo\DI_Intermodular\ProyectoIntermodular\ProyectoIntermodular\obj\Debug\ProyectoIntermodular.FrmGestionGuardias.resources
+C:\codigo\DI_Intermodular\ProyectoIntermodular\ProyectoIntermodular\obj\Debug\ProyectoIntermodular.FrmPropiedadesGuardia.resources
+C:\codigo\DI_Intermodular\ProyectoIntermodular\ProyectoIntermodular\obj\Debug\ProyectoIntermodular.Properties.Resources.resources
+C:\codigo\DI_Intermodular\ProyectoIntermodular\ProyectoIntermodular\obj\Debug\ProyectoIntermodular.csproj.GenerateResource.cache
+C:\codigo\DI_Intermodular\ProyectoIntermodular\ProyectoIntermodular\obj\Debug\ProyectoIntermodular.csproj.CoreCompileInputs.cache
+C:\codigo\DI_Intermodular\ProyectoIntermodular\ProyectoIntermodular\obj\Debug\ProyectoIntermodular.exe
+C:\codigo\DI_Intermodular\ProyectoIntermodular\ProyectoIntermodular\obj\Debug\ProyectoIntermodular.pdb
+C:\codigo\DI_Intermodular\ProyectoIntermodular\ProyectoIntermodular\obj\Debug\ProyectoIntermodular.FrmLogIn.resources
