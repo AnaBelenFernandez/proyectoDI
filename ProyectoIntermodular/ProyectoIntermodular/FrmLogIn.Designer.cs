@@ -28,94 +28,45 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtUsuario = new System.Windows.Forms.TextBox();
-            this.txtContraseña = new System.Windows.Forms.TextBox();
-            this.btnLogIn = new System.Windows.Forms.Button();
-            this.lblError = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.grpError = new System.Windows.Forms.GroupBox();
-            this.grpError.SuspendLayout();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // txtUsuario
+            // textBox1
             // 
-            this.txtUsuario.Location = new System.Drawing.Point(226, 189);
-            this.txtUsuario.Name = "txtUsuario";
-            this.txtUsuario.Size = new System.Drawing.Size(335, 20);
-            this.txtUsuario.TabIndex = 0;
+            this.textBox1.Location = new System.Drawing.Point(329, 73);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.TabIndex = 0;
             // 
-            // txtContraseña
+            // textBox2
             // 
-            this.txtContraseña.Location = new System.Drawing.Point(226, 245);
-            this.txtContraseña.Name = "txtContraseña";
-            this.txtContraseña.PasswordChar = '*';
-            this.txtContraseña.Size = new System.Drawing.Size(335, 20);
-            this.txtContraseña.TabIndex = 1;
+            this.textBox2.Location = new System.Drawing.Point(367, 151);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(100, 20);
+            this.textBox2.TabIndex = 1;
             // 
-            // btnLogIn
+            // button1
             // 
-            this.btnLogIn.Location = new System.Drawing.Point(291, 286);
-            this.btnLogIn.Name = "btnLogIn";
-            this.btnLogIn.Size = new System.Drawing.Size(195, 23);
-            this.btnLogIn.TabIndex = 2;
-            this.btnLogIn.Text = "Log In";
-            this.btnLogIn.UseVisualStyleBackColor = true;
-            this.btnLogIn.Click += new System.EventHandler(this.btnLogIn_Click);
-            // 
-            // lblError
-            // 
-            this.lblError.AutoSize = true;
-            this.lblError.Location = new System.Drawing.Point(18, 26);
-            this.lblError.Name = "lblError";
-            this.lblError.Size = new System.Drawing.Size(164, 13);
-            this.lblError.TabIndex = 3;
-            this.lblError.Text = "Usuario o Contraseña incorrectos";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(223, 173);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(43, 13);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Usuario";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(223, 229);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(61, 13);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Contraseña";
-            // 
-            // grpError
-            // 
-            this.grpError.Controls.Add(this.lblError);
-            this.grpError.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.grpError.Location = new System.Drawing.Point(226, 94);
-            this.grpError.Name = "grpError";
-            this.grpError.Size = new System.Drawing.Size(335, 57);
-            this.grpError.TabIndex = 6;
-            this.grpError.TabStop = false;
-            this.grpError.Text = "Log In Error";
+            this.button1.Location = new System.Drawing.Point(348, 234);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // FrmLogIn
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.grpError);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.btnLogIn);
-            this.Controls.Add(this.txtContraseña);
-            this.Controls.Add(this.txtUsuario);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.textBox1);
             this.Name = "FrmLogIn";
             this.Text = "Form1";
-            this.grpError.ResumeLayout(false);
-            this.grpError.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -123,12 +74,8 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox txtUsuario;
-        private System.Windows.Forms.TextBox txtContraseña;
-        private System.Windows.Forms.Button btnLogIn;
-        private System.Windows.Forms.Label lblError;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.GroupBox grpError;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Button button1;
     }
 }
