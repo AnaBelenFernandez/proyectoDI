@@ -17,9 +17,14 @@ namespace ProyectoIntermodular
             InitializeComponent();
         }
 
+        private void tsmiLogOut_Click(object sender, EventArgs e)
+        {
+            
+        }
+
         private void tsmiSalir_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Application.Exit();
         }
 
         private void tsmiCascada_Click(object sender, EventArgs e)

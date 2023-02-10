@@ -13,13 +13,14 @@ namespace ProyectoIntermodular
     public partial class FrmGestionGuardias : Form
     {
         private Negocio _negocio;
+
         public FrmGestionGuardias()
         {
             InitializeComponent();
 
             _negocio=new Negocio();
 
-            Actualizar();
+            //Actualizar();
         }
 
         private void Actualizar()
@@ -43,7 +44,7 @@ namespace ProyectoIntermodular
                 }
 
                 ListViewItem item = new ListViewItem(new string[] {_negocio.ObtenerNombreProfesor(guardia.IdProfesorFalta), _negocio.ObtenerNombreProfesor(guardia.IdProfesorGuardia), enumText, guardia.Fecha.ToString(),});
-                item.Tag = guardia;
+                item.Tag = guardia.Id;
                 lvwGuardias.Items.Add(item);
             }
         }
@@ -63,12 +64,47 @@ namespace ProyectoIntermodular
 
         private void tsmiVer_Click(object sender, EventArgs e)
         {
-
+            if (lvwGuardias.SelectedItems.Count != 0)
+            {
+                Guardia guardia = _negocio.ObtenerGuardia(Convert.ToInt32(lvwGuardias.SelectedItems[0].Tag));
+                FrmPropiedadesGuardia propGuardia = new FrmPropiedadesGuardia(guardia);
+                propGuardia.ShowDialog();
+                if (propGuardia.DialogResult == DialogResult.OK)
+                {
+                    _negocio.ActualizarGuardia(guardia);
+                    Actualizar();
+                }
+            }
         }
 
         private void TsmiBorrar_Click(object sender, EventArgs e)
         {
+            if (lvwGuardias.SelectedItems.Count != 0)
+            {
+                //pedir confirmación al usuario antes de borrar
+                DialogResult resultado = MessageBox.Show("¿Deseas Eliminar esta Guardia?", "Eliminar", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                if (resultado == DialogResult.OK)
+                {
+                    _negocio.BorrarGuardia(Convert.ToInt32(lvwGuardias.SelectedItems[0].Tag));
+                    Actualizar();
+                }
+            }
+        }
 
+        private void cmsContextual_Opening(object sender, CancelEventArgs e)
+        {
+            if (lvwGuardias.SelectedItems.Count == 0)
+            {
+                tsmiCrearContextual.Enabled = true;
+                tsmiVer.Enabled = false;
+                TsmiBorrar.Enabled = false;
+            }
+            else
+            {
+                TsmiBorrar.Enabled = true;
+                tsmiVer.Enabled = true;
+                tsmiCrearContextual.Enabled = false;
+            }
         }
     }
 }

@@ -165,6 +165,7 @@
             this.btnEliminar.TabIndex = 53;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // txtProfeGuardia
             // 
@@ -190,6 +191,7 @@
             this.btnProfesorGuardia.TabIndex = 50;
             this.btnProfesorGuardia.Text = "Prof. Guardia";
             this.btnProfesorGuardia.UseVisualStyleBackColor = true;
+            this.btnProfesorGuardia.Click += new System.EventHandler(this.btnProfesorGuardia_Click);
             // 
             // btnProfesorFalta
             // 
@@ -199,6 +201,7 @@
             this.btnProfesorFalta.TabIndex = 49;
             this.btnProfesorFalta.Text = "Prof. falta";
             this.btnProfesorFalta.UseVisualStyleBackColor = true;
+            this.btnProfesorFalta.Click += new System.EventHandler(this.btnProfesorFalta_Click);
             // 
             // cmbGrupo
             // 
@@ -271,6 +274,7 @@
             this.btnCancelar.TabIndex = 41;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnAceptar
             // 
@@ -280,6 +284,7 @@
             this.btnAceptar.TabIndex = 40;
             this.btnAceptar.Text = "Aceptar";
             this.btnAceptar.UseVisualStyleBackColor = true;
+            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
             // FrmPropiedadesGuardia
             // 

@@ -35,13 +35,16 @@
             this.profGuardia = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.estado = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.fecha = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.horario = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.diaSemana = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.hora = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.aviso = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.grupo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.aula = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.observaciones = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.cmsContextual = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiCrearContextual = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiVer = new System.Windows.Forms.ToolStripMenuItem();
+            this.TsmiBorrar = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripComboBox1 = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
@@ -49,13 +52,9 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.archivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiCrear = new System.Windows.Forms.ToolStripMenuItem();
-            this.cmsContextual = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.tsmiCrearContextual = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiVer = new System.Windows.Forms.ToolStripMenuItem();
-            this.TsmiBorrar = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsContextual.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
-            this.cmsContextual.SuspendLayout();
             this.SuspendLayout();
             // 
             // lvwGuardias
@@ -65,7 +64,6 @@
             this.profGuardia,
             this.estado,
             this.fecha,
-            this.horario,
             this.diaSemana,
             this.hora,
             this.aviso,
@@ -77,6 +75,7 @@
             this.lvwGuardias.GridLines = true;
             this.lvwGuardias.HideSelection = false;
             this.lvwGuardias.Location = new System.Drawing.Point(0, 49);
+            this.lvwGuardias.MultiSelect = false;
             this.lvwGuardias.Name = "lvwGuardias";
             this.lvwGuardias.Size = new System.Drawing.Size(1338, 401);
             this.lvwGuardias.TabIndex = 5;
@@ -102,11 +101,6 @@
             // 
             this.fecha.Text = "Fecha";
             this.fecha.Width = 117;
-            // 
-            // horario
-            // 
-            this.horario.Text = "Horario";
-            this.horario.Width = 115;
             // 
             // diaSemana
             // 
@@ -138,6 +132,40 @@
             this.observaciones.Text = "Observaciones";
             this.observaciones.Width = 248;
             // 
+            // cmsContextual
+            // 
+            this.cmsContextual.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiCrearContextual,
+            this.tsmiVer,
+            this.TsmiBorrar});
+            this.cmsContextual.Name = "cmsContextual";
+            this.cmsContextual.Size = new System.Drawing.Size(107, 70);
+            this.cmsContextual.Opening += new System.ComponentModel.CancelEventHandler(this.cmsContextual_Opening);
+            // 
+            // tsmiCrearContextual
+            // 
+            this.tsmiCrearContextual.Image = ((System.Drawing.Image)(resources.GetObject("tsmiCrearContextual.Image")));
+            this.tsmiCrearContextual.Name = "tsmiCrearContextual";
+            this.tsmiCrearContextual.Size = new System.Drawing.Size(106, 22);
+            this.tsmiCrearContextual.Text = "Crear";
+            this.tsmiCrearContextual.Click += new System.EventHandler(this.tsmiCrear_Click);
+            // 
+            // tsmiVer
+            // 
+            this.tsmiVer.Image = ((System.Drawing.Image)(resources.GetObject("tsmiVer.Image")));
+            this.tsmiVer.Name = "tsmiVer";
+            this.tsmiVer.Size = new System.Drawing.Size(106, 22);
+            this.tsmiVer.Text = "Ver";
+            this.tsmiVer.Click += new System.EventHandler(this.tsmiVer_Click);
+            // 
+            // TsmiBorrar
+            // 
+            this.TsmiBorrar.Image = ((System.Drawing.Image)(resources.GetObject("TsmiBorrar.Image")));
+            this.TsmiBorrar.Name = "TsmiBorrar";
+            this.TsmiBorrar.Size = new System.Drawing.Size(106, 22);
+            this.TsmiBorrar.Text = "Borrar";
+            this.TsmiBorrar.Click += new System.EventHandler(this.TsmiBorrar_Click);
+            // 
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -146,12 +174,21 @@
             this.toolStripButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.toolStrip1.Size = new System.Drawing.Size(1338, 25);
             this.toolStrip1.TabIndex = 4;
             this.toolStrip1.Text = "toolStrip1";
             // 
             // toolStripComboBox1
             // 
+            this.toolStripComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.toolStripComboBox1.Items.AddRange(new object[] {
+            "Profesor",
+            "Estado",
+            "Fecha",
+            "Dia Semana",
+            "Grupo",
+            "Aula"});
             this.toolStripComboBox1.Name = "toolStripComboBox1";
             this.toolStripComboBox1.Size = new System.Drawing.Size(121, 25);
             // 
@@ -191,42 +228,9 @@
             // tsmiCrear
             // 
             this.tsmiCrear.Name = "tsmiCrear";
-            this.tsmiCrear.Size = new System.Drawing.Size(180, 22);
+            this.tsmiCrear.Size = new System.Drawing.Size(102, 22);
             this.tsmiCrear.Text = "Crear";
             this.tsmiCrear.Click += new System.EventHandler(this.tsmiCrear_Click);
-            // 
-            // cmsContextual
-            // 
-            this.cmsContextual.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiCrearContextual,
-            this.tsmiVer,
-            this.TsmiBorrar});
-            this.cmsContextual.Name = "cmsContextual";
-            this.cmsContextual.Size = new System.Drawing.Size(181, 92);
-            // 
-            // tsmiCrearContextual
-            // 
-            this.tsmiCrearContextual.Image = ((System.Drawing.Image)(resources.GetObject("tsmiCrearContextual.Image")));
-            this.tsmiCrearContextual.Name = "tsmiCrearContextual";
-            this.tsmiCrearContextual.Size = new System.Drawing.Size(180, 22);
-            this.tsmiCrearContextual.Text = "Crear";
-            this.tsmiCrearContextual.Click += new System.EventHandler(this.tsmiCrear_Click);
-            // 
-            // tsmiVer
-            // 
-            this.tsmiVer.Image = ((System.Drawing.Image)(resources.GetObject("tsmiVer.Image")));
-            this.tsmiVer.Name = "tsmiVer";
-            this.tsmiVer.Size = new System.Drawing.Size(180, 22);
-            this.tsmiVer.Text = "Ver";
-            this.tsmiVer.Click += new System.EventHandler(this.tsmiVer_Click);
-            // 
-            // TsmiBorrar
-            // 
-            this.TsmiBorrar.Image = ((System.Drawing.Image)(resources.GetObject("TsmiBorrar.Image")));
-            this.TsmiBorrar.Name = "TsmiBorrar";
-            this.TsmiBorrar.Size = new System.Drawing.Size(180, 22);
-            this.TsmiBorrar.Text = "Borrar";
-            this.TsmiBorrar.Click += new System.EventHandler(this.TsmiBorrar_Click);
             // 
             // FrmGestionGuardias
             // 
@@ -238,11 +242,11 @@
             this.Controls.Add(this.menuStrip1);
             this.Name = "FrmGestionGuardias";
             this.Text = "FrmGestionGuardias";
+            this.cmsContextual.ResumeLayout(false);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.cmsContextual.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -255,7 +259,6 @@
         private System.Windows.Forms.ColumnHeader profGuardia;
         private System.Windows.Forms.ColumnHeader estado;
         private System.Windows.Forms.ColumnHeader fecha;
-        private System.Windows.Forms.ColumnHeader horario;
         private System.Windows.Forms.ColumnHeader diaSemana;
         private System.Windows.Forms.ColumnHeader hora;
         private System.Windows.Forms.ColumnHeader aviso;

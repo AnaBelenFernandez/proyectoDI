@@ -12,7 +12,7 @@ namespace ProyectoIntermodular
         { 
         }
 
-        // comprueba si el usuario y contraseña son correctas
+        // comprueba si el usuario y contraseña son correctas ademas de si su perfil es el indicado para acceder a la aplicacion
         public bool ComprobarUsuario()
         {
             throw new NotImplementedException();

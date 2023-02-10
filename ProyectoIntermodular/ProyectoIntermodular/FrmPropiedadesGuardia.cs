@@ -15,6 +15,48 @@ namespace ProyectoIntermodular
         public FrmPropiedadesGuardia()
         {
             InitializeComponent();
+            this.DialogResult = DialogResult.Cancel;
+        }
+
+        public FrmPropiedadesGuardia(Guardia guardia)
+        {
+            InitializeComponent();
+        }
+
+        private void btnProfesorFalta_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnProfesorGuardia_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnAceptar_Click(object sender, EventArgs e)
+        {
+            if (validar())
+            {
+
+
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+            }
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private bool validar()
+        {
+            return true;
         }
     }
 }

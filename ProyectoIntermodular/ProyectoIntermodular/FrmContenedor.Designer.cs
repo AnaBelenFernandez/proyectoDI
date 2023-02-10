@@ -39,6 +39,8 @@
             this.tsmiCascada = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiHorizontal = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmVertical = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiLogOut = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -58,6 +60,8 @@
             // archivoToolStripMenuItem
             // 
             this.archivoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiLogOut,
+            this.toolStripMenuItem1,
             this.tsmiSalir});
             this.archivoToolStripMenuItem.Name = "archivoToolStripMenuItem";
             this.archivoToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
@@ -83,13 +87,13 @@
             // tsmiProfesores
             // 
             this.tsmiProfesores.Name = "tsmiProfesores";
-            this.tsmiProfesores.Size = new System.Drawing.Size(129, 22);
+            this.tsmiProfesores.Size = new System.Drawing.Size(180, 22);
             this.tsmiProfesores.Text = "Profesores";
             // 
             // tsmiHorarios
             // 
             this.tsmiHorarios.Name = "tsmiHorarios";
-            this.tsmiHorarios.Size = new System.Drawing.Size(129, 22);
+            this.tsmiHorarios.Size = new System.Drawing.Size(180, 22);
             this.tsmiHorarios.Text = "Horarios";
             // 
             // tsmiGuardias
@@ -112,23 +116,35 @@
             // tsmiCascada
             // 
             this.tsmiCascada.Name = "tsmiCascada";
-            this.tsmiCascada.Size = new System.Drawing.Size(180, 22);
+            this.tsmiCascada.Size = new System.Drawing.Size(129, 22);
             this.tsmiCascada.Text = "Cascada";
             this.tsmiCascada.Click += new System.EventHandler(this.tsmiCascada_Click);
             // 
             // tsmiHorizontal
             // 
             this.tsmiHorizontal.Name = "tsmiHorizontal";
-            this.tsmiHorizontal.Size = new System.Drawing.Size(180, 22);
+            this.tsmiHorizontal.Size = new System.Drawing.Size(129, 22);
             this.tsmiHorizontal.Text = "Horizontal";
             this.tsmiHorizontal.Click += new System.EventHandler(this.tsmiHorizontal_Click);
             // 
             // tsmVertical
             // 
             this.tsmVertical.Name = "tsmVertical";
-            this.tsmVertical.Size = new System.Drawing.Size(180, 22);
+            this.tsmVertical.Size = new System.Drawing.Size(129, 22);
             this.tsmVertical.Text = "Vertical";
             this.tsmVertical.Click += new System.EventHandler(this.tsmVertical_Click);
+            // 
+            // tsmiLogOut
+            // 
+            this.tsmiLogOut.Name = "tsmiLogOut";
+            this.tsmiLogOut.Size = new System.Drawing.Size(180, 22);
+            this.tsmiLogOut.Text = "Log Out";
+            this.tsmiLogOut.Click += new System.EventHandler(this.tsmiLogOut_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
             // 
             // FrmContenedor
             // 
@@ -159,6 +175,8 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiCascada;
         private System.Windows.Forms.ToolStripMenuItem tsmiHorizontal;
         private System.Windows.Forms.ToolStripMenuItem tsmVertical;
+        private System.Windows.Forms.ToolStripMenuItem tsmiLogOut;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
     }
 }
 
