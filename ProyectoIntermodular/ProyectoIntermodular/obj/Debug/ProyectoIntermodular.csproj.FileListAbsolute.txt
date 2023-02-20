@@ -26,3 +26,7 @@ C:\Users\Alumno\Desktop\Intermodular\proyectoDI\ProyectoIntermodular\ProyectoInt
 C:\Users\Alumno\Desktop\Intermodular\proyectoDI\ProyectoIntermodular\ProyectoIntermodular\obj\Debug\ProyectoIntermodular.csproj.CoreCompileInputs.cache
 C:\Users\Alumno\Desktop\Intermodular\proyectoDI\ProyectoIntermodular\ProyectoIntermodular\obj\Debug\ProyectoIntermodular.exe
 C:\Users\Alumno\Desktop\Intermodular\proyectoDI\ProyectoIntermodular\ProyectoIntermodular\obj\Debug\ProyectoIntermodular.pdb
+C:\Users\Alumno\Desktop\Intermodular\proyectoDI\ProyectoIntermodular\ProyectoIntermodular\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Alumno\Desktop\Intermodular\proyectoDI\ProyectoIntermodular\ProyectoIntermodular\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Alumno\Desktop\Intermodular\proyectoDI\ProyectoIntermodular\ProyectoIntermodular\obj\Debug\ProyectoIntermodular.csproj.CopyComplete
+C:\Users\Alumno\Desktop\Intermodular\proyectoDI\ProyectoIntermodular\ProyectoIntermodular\obj\Debug\ProyectoIntermodular.FrmBuscadorProfesor.resources

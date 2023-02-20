@@ -46,12 +46,15 @@
             this.tsmiVer = new System.Windows.Forms.ToolStripMenuItem();
             this.TsmiBorrar = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripComboBox1 = new System.Windows.Forms.ToolStripComboBox();
-            this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.txtFiltrar = new System.Windows.Forms.ToolStripTextBox();
+            this.btnFiltrar = new System.Windows.Forms.ToolStripButton();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.archivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiCrear = new System.Windows.Forms.ToolStripMenuItem();
+            this.cambiarEstadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiRealizado = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiConfirmada = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiAnulado = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsContextual.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -137,16 +140,17 @@
             this.cmsContextual.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiCrearContextual,
             this.tsmiVer,
-            this.TsmiBorrar});
+            this.TsmiBorrar,
+            this.cambiarEstadoToolStripMenuItem});
             this.cmsContextual.Name = "cmsContextual";
-            this.cmsContextual.Size = new System.Drawing.Size(107, 70);
+            this.cmsContextual.Size = new System.Drawing.Size(158, 92);
             this.cmsContextual.Opening += new System.ComponentModel.CancelEventHandler(this.cmsContextual_Opening);
             // 
             // tsmiCrearContextual
             // 
             this.tsmiCrearContextual.Image = ((System.Drawing.Image)(resources.GetObject("tsmiCrearContextual.Image")));
             this.tsmiCrearContextual.Name = "tsmiCrearContextual";
-            this.tsmiCrearContextual.Size = new System.Drawing.Size(106, 22);
+            this.tsmiCrearContextual.Size = new System.Drawing.Size(157, 22);
             this.tsmiCrearContextual.Text = "Crear";
             this.tsmiCrearContextual.Click += new System.EventHandler(this.tsmiCrear_Click);
             // 
@@ -154,7 +158,7 @@
             // 
             this.tsmiVer.Image = ((System.Drawing.Image)(resources.GetObject("tsmiVer.Image")));
             this.tsmiVer.Name = "tsmiVer";
-            this.tsmiVer.Size = new System.Drawing.Size(106, 22);
+            this.tsmiVer.Size = new System.Drawing.Size(157, 22);
             this.tsmiVer.Text = "Ver";
             this.tsmiVer.Click += new System.EventHandler(this.tsmiVer_Click);
             // 
@@ -162,16 +166,15 @@
             // 
             this.TsmiBorrar.Image = ((System.Drawing.Image)(resources.GetObject("TsmiBorrar.Image")));
             this.TsmiBorrar.Name = "TsmiBorrar";
-            this.TsmiBorrar.Size = new System.Drawing.Size(106, 22);
+            this.TsmiBorrar.Size = new System.Drawing.Size(157, 22);
             this.TsmiBorrar.Text = "Borrar";
             this.TsmiBorrar.Click += new System.EventHandler(this.TsmiBorrar_Click);
             // 
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripComboBox1,
-            this.toolStripTextBox1,
-            this.toolStripButton1});
+            this.txtFiltrar,
+            this.btnFiltrar});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -179,33 +182,21 @@
             this.toolStrip1.TabIndex = 4;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // toolStripComboBox1
+            // txtFiltrar
             // 
-            this.toolStripComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.toolStripComboBox1.Items.AddRange(new object[] {
-            "Profesor",
-            "Estado",
-            "Fecha",
-            "Dia Semana",
-            "Grupo",
-            "Aula"});
-            this.toolStripComboBox1.Name = "toolStripComboBox1";
-            this.toolStripComboBox1.Size = new System.Drawing.Size(121, 25);
+            this.txtFiltrar.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txtFiltrar.Name = "txtFiltrar";
+            this.txtFiltrar.Size = new System.Drawing.Size(100, 25);
             // 
-            // toolStripTextBox1
+            // btnFiltrar
             // 
-            this.toolStripTextBox1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.toolStripTextBox1.Name = "toolStripTextBox1";
-            this.toolStripTextBox1.Size = new System.Drawing.Size(100, 25);
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton1.Text = "toolStripButton1";
+            this.btnFiltrar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnFiltrar.Image = ((System.Drawing.Image)(resources.GetObject("btnFiltrar.Image")));
+            this.btnFiltrar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnFiltrar.Name = "btnFiltrar";
+            this.btnFiltrar.Size = new System.Drawing.Size(23, 22);
+            this.btnFiltrar.Text = "toolStripButton1";
+            this.btnFiltrar.Click += new System.EventHandler(this.btnFiltrar_Click);
             // 
             // menuStrip1
             // 
@@ -231,6 +222,37 @@
             this.tsmiCrear.Size = new System.Drawing.Size(102, 22);
             this.tsmiCrear.Text = "Crear";
             this.tsmiCrear.Click += new System.EventHandler(this.tsmiCrear_Click);
+            // 
+            // cambiarEstadoToolStripMenuItem
+            // 
+            this.cambiarEstadoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiRealizado,
+            this.tsmiConfirmada,
+            this.tsmiAnulado});
+            this.cambiarEstadoToolStripMenuItem.Name = "cambiarEstadoToolStripMenuItem";
+            this.cambiarEstadoToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.cambiarEstadoToolStripMenuItem.Text = "Cambiar estado";
+            // 
+            // tsmiRealizado
+            // 
+            this.tsmiRealizado.Name = "tsmiRealizado";
+            this.tsmiRealizado.Size = new System.Drawing.Size(202, 22);
+            this.tsmiRealizado.Text = "Realizado";
+            this.tsmiRealizado.Click += new System.EventHandler(this.tsmiRealizado_Click);
+            // 
+            // tsmiConfirmada
+            // 
+            this.tsmiConfirmada.Name = "tsmiConfirmada";
+            this.tsmiConfirmada.Size = new System.Drawing.Size(202, 22);
+            this.tsmiConfirmada.Text = "Confirmada y pendiente";
+            this.tsmiConfirmada.Click += new System.EventHandler(this.tsmiConfirmada_Click);
+            // 
+            // tsmiAnulado
+            // 
+            this.tsmiAnulado.Name = "tsmiAnulado";
+            this.tsmiAnulado.Size = new System.Drawing.Size(202, 22);
+            this.tsmiAnulado.Text = "Anulado";
+            this.tsmiAnulado.Click += new System.EventHandler(this.tsmiAnulado_Click);
             // 
             // FrmGestionGuardias
             // 
@@ -266,9 +288,8 @@
         private System.Windows.Forms.ColumnHeader aula;
         private System.Windows.Forms.ColumnHeader observaciones;
         private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripComboBox toolStripComboBox1;
-        private System.Windows.Forms.ToolStripTextBox toolStripTextBox1;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripTextBox txtFiltrar;
+        private System.Windows.Forms.ToolStripButton btnFiltrar;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem archivoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tsmiCrear;
@@ -276,5 +297,9 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiCrearContextual;
         private System.Windows.Forms.ToolStripMenuItem tsmiVer;
         private System.Windows.Forms.ToolStripMenuItem TsmiBorrar;
+        private System.Windows.Forms.ToolStripMenuItem cambiarEstadoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmiRealizado;
+        private System.Windows.Forms.ToolStripMenuItem tsmiConfirmada;
+        private System.Windows.Forms.ToolStripMenuItem tsmiAnulado;
     }
 }
