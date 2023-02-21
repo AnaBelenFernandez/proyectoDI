@@ -29,6 +29,7 @@ namespace ProyectoIntermodular
         {
             lvwGuardias.Items.Clear();
             List<Guardia> guardias = await _negocio.ObtenerGuardias();
+            guardias.Sort((x,y) => x.Fecha.CompareTo(y.Fecha));
 
             foreach (Guardia guardia in guardias)
             {
@@ -47,8 +48,19 @@ namespace ProyectoIntermodular
                 }
                 Profesor profeFalta = await _negocio.ObtenerProfesorID(guardia.IdProfesorFalta);
                 Profesor profeGuardia = await _negocio.ObtenerProfesorID(guardia.IdProfesorGuardia);
-                ListViewItem item = new ListViewItem(new string[] {(profeFalta.nombre+", "+profeFalta.ape1+" "+profeFalta.ape2), (profeGuardia.nombre + ", " + profeGuardia.ape1 + " " + profeGuardia.ape2), enumText, guardia.Fecha.ToString(),});
+                string profesorGuardia = String.Empty;
+                bool cubierta = false; ;
+                if(profeGuardia!= null)
+                {
+                    profesorGuardia = (profeGuardia.nombre + ", " + profeGuardia.ape1 + " " + profeGuardia.ape2);
+                    cubierta = true;
+                }
+                ListViewItem item = new ListViewItem(new string[] {(profeFalta.nombre+", "+profeFalta.ape1+" "+profeFalta.ape2), profesorGuardia , enumText, guardia.Fecha.ToString(),});
                 item.Tag = guardia.Id;
+                if(cubierta)
+                {
+                    item.BackColor = Color.Red;
+                }
                 lvwGuardias.Items.Add(item);
             }
         }
@@ -114,25 +126,26 @@ namespace ProyectoIntermodular
         private async void tsmiRealizado_Click(object sender, EventArgs e)
         {
             await _negocio.CambiarEstadoGuardia(Convert.ToInt32(lvwGuardias.SelectedItems[0].Tag), EstadoEnum.R);
+            Actualizar();
         }
 
         private async void tsmiConfirmada_Click(object sender, EventArgs e)
         {
             await _negocio.CambiarEstadoGuardia(Convert.ToInt32(lvwGuardias.SelectedItems[0].Tag), EstadoEnum.C);
+            Actualizar();
         }
 
         private async void tsmiAnulado_Click(object sender, EventArgs e)
         {
             await _negocio.CambiarEstadoGuardia(Convert.ToInt32(lvwGuardias.SelectedItems[0].Tag), EstadoEnum.A);
+            Actualizar();
         }
 
         private void btnFiltrar_Click(object sender, EventArgs e)
         {
-            //List<Guardia> guardias = await _negocio.ObtenerGuardias();
-
-            //lvwGuardias.Items.Clear();
-            //lvwGuardias.Items.AddRange(guardias.Where(i => string.IsNullOrEmpty(txtFiltrar.Text) || i.Estado.ToString().StartsWith())
-            //.Select(c => new ListViewItem(c.Name)).ToArray());
+            List<ListViewItem> list = lvwGuardias.Items.Cast<ListViewItem>().Select(x => x).ToList();
+            lvwGuardias.Clear();
+            lvwGuardias.Items.AddRange(list.Where(x => x.Text.Contains(txtFiltrar.Text)).ToArray());
         }
 
 
