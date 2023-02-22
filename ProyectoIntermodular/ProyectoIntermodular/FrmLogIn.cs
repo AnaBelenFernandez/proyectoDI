@@ -23,7 +23,7 @@ namespace ProyectoIntermodular
 
         private async void btnLogIn_Click(object sender, EventArgs e)
         {
-            Profesor profesor = await negocio.Login(txtUsuario.Text, Encriptar(txtContraseña.Text));
+            Profesor profesor = await negocio.Login(txtUsuario.Text,txtContraseña.Text);
             if (profesor!=null )
             {
                 FrmContenedor contenedor = new FrmContenedor();
