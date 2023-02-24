@@ -15,11 +15,13 @@ namespace ProyectoIntermodular
         public FrmContenedor()
         {
             InitializeComponent();
+            this.DialogResult= DialogResult.Cancel;
         }
 
         private void tsmiLogOut_Click(object sender, EventArgs e)
         {
-            
+            this.DialogResult= DialogResult.OK;
+            this.Close();
         }
 
         private void tsmiSalir_Click(object sender, EventArgs e)

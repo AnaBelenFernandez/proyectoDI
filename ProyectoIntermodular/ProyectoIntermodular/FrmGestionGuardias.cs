@@ -46,18 +46,23 @@ namespace ProyectoIntermodular
                         enumText = "Anulada";
                         break;
                 }
-                Profesor profeFalta = await _negocio.ObtenerProfesorID(guardia.IdProfesorFalta);
-                Profesor profeGuardia = await _negocio.ObtenerProfesorID(guardia.IdProfesorGuardia);
+                Profesor profeFalta = await _negocio.ObtenerProfesorID(guardia.Profesor1);
+                Profesor profeGuardia = await _negocio.ObtenerProfesorID(guardia.Profesor2);
                 string profesorGuardia = String.Empty;
-                bool cubierta = false; ;
+                string profesorFalta = String.Empty;
+                bool cubierta = false;
+                if (profeFalta != null)
+                {
+                    profesorFalta = (profeGuardia.nombre + ", " + profeGuardia.ape1 + " " + profeGuardia.ape2);
+                }
                 if(profeGuardia!= null)
                 {
                     profesorGuardia = (profeGuardia.nombre + ", " + profeGuardia.ape1 + " " + profeGuardia.ape2);
                     cubierta = true;
                 }
-                ListViewItem item = new ListViewItem(new string[] {(profeFalta.nombre+", "+profeFalta.ape1+" "+profeFalta.ape2), profesorGuardia , enumText, guardia.Fecha.ToString(),});
+                ListViewItem item = new ListViewItem(new string[] {profesorFalta, profesorGuardia , enumText, guardia.Fecha.ToString(),guardia.DiaSemana.ToString(),guardia.Hora.ToString(),guardia.Grupo,guardia.Aula,guardia.Observaciones});
                 item.Tag = guardia.Id;
-                if(cubierta)
+                if(!cubierta)
                 {
                     item.BackColor = Color.Red;
                 }
@@ -78,19 +83,9 @@ namespace ProyectoIntermodular
             }
         }
 
-        private async void tsmiVer_Click(object sender, EventArgs e)
+        private void tsmiVer_Click(object sender, EventArgs e)
         {
-            if (lvwGuardias.SelectedItems.Count != 0)
-            {
-                Guardia guardia = await _negocio.ObtenerGuardiaID(Convert.ToInt32(lvwGuardias.SelectedItems[0].Tag));
-                FrmPropiedadesGuardia propGuardia = new FrmPropiedadesGuardia(guardia);
-                propGuardia.ShowDialog();
-                if (propGuardia.DialogResult == DialogResult.OK)
-                {
-                     await _negocio.ActualizarGuardia(guardia);
-                    Actualizar();
-                }
-            }
+            ver();
         }
 
         private async void TsmiBorrar_Click(object sender, EventArgs e)
@@ -125,19 +120,19 @@ namespace ProyectoIntermodular
 
         private async void tsmiRealizado_Click(object sender, EventArgs e)
         {
-            await _negocio.CambiarEstadoGuardia(Convert.ToInt32(lvwGuardias.SelectedItems[0].Tag), EstadoEnum.R);
+            await _negocio.CambiarEstadoGuardia(Convert.ToInt32(lvwGuardias.SelectedItems[0].Tag), EstadoEnum.R.ToString());
             Actualizar();
         }
 
         private async void tsmiConfirmada_Click(object sender, EventArgs e)
         {
-            await _negocio.CambiarEstadoGuardia(Convert.ToInt32(lvwGuardias.SelectedItems[0].Tag), EstadoEnum.C);
+            await _negocio.CambiarEstadoGuardia(Convert.ToInt32(lvwGuardias.SelectedItems[0].Tag), EstadoEnum.C.ToString());
             Actualizar();
         }
 
         private async void tsmiAnulado_Click(object sender, EventArgs e)
         {
-            await _negocio.CambiarEstadoGuardia(Convert.ToInt32(lvwGuardias.SelectedItems[0].Tag), EstadoEnum.A);
+            await _negocio.CambiarEstadoGuardia(Convert.ToInt32(lvwGuardias.SelectedItems[0].Tag), EstadoEnum.A.ToString());
             Actualizar();
         }
 
@@ -148,6 +143,24 @@ namespace ProyectoIntermodular
             lvwGuardias.Items.AddRange(list.Where(x => x.Text.Contains(txtFiltrar.Text)).ToArray());
         }
 
+        private void lvwGuardias_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            ver();
+        }
 
+        private async void ver()
+        {
+            if (lvwGuardias.SelectedItems.Count != 0)
+            {
+                Guardia guardia = await _negocio.ObtenerGuardiaID(Convert.ToInt32(lvwGuardias.SelectedItems[0].Tag));
+                FrmPropiedadesGuardia propGuardia = new FrmPropiedadesGuardia(guardia);
+                propGuardia.ShowDialog();
+                if (propGuardia.DialogResult == DialogResult.OK)
+                {
+                    await _negocio.ActualizarGuardia(guardia);
+                    Actualizar();
+                }
+            }
+        }
     }
 }

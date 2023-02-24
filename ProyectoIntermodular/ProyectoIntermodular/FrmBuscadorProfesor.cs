@@ -24,18 +24,21 @@ namespace ProyectoIntermodular
 
         private async void btnNombre_Click(object sender, EventArgs e)
         {
-            List<Profesor> list = await _negocio.GetProfesores();
-            Profesor profesor=list.FirstOrDefault(x => x.nombre.Equals(txtBuscador.Text));
-            if (profesor != null)
+            if (txtBuscador.Text != String.Empty)
             {
-                MessageBox.Show("No se encontro el profesor indicado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                _profe = profesor;
-                this.DialogResult |= DialogResult.OK;
-                this.Close();
-            }
+                List<Profesor> list = await _negocio.GetProfesores();
+                Profesor profesor = list.FirstOrDefault(x => x.nombre.Equals(txtBuscador.Text));
+                if (profesor == null)
+                {
+                    MessageBox.Show("No se encontro el profesor indicado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    _profe = profesor;
+                    this.DialogResult |= DialogResult.OK;
+                    this.Close();
+                }
+            }  
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -45,16 +48,19 @@ namespace ProyectoIntermodular
 
         private async void btnId_Click(object sender, EventArgs e)
         {
-            Profesor profesor = await _negocio.ObtenerProfesorID(Convert.ToInt32( txtBuscador.Text));
-            if (profesor != null)
-            {
-                MessageBox.Show("No se encontro el profesor indicado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                _profe = profesor;
-                this.DialogResult|= DialogResult.OK;
-                this.Close();
+            if(txtBuscador.Text != String.Empty) {
+                int id = Convert.ToInt32(txtBuscador.Text);
+                Profesor profesor = await _negocio.ObtenerProfesorID(Convert.ToInt32(txtBuscador.Text));
+                if (profesor == null)
+                {
+                    MessageBox.Show("No se encontro el profesor indicado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    _profe = profesor;
+                    this.DialogResult |= DialogResult.OK;
+                    this.Close();
+                }
             }
         }
     }

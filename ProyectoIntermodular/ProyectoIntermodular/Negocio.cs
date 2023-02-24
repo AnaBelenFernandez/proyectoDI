@@ -5,6 +5,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System;
+using System.Windows.Forms;
 
 namespace ProyectoIntermodular
 {
@@ -18,26 +19,15 @@ namespace ProyectoIntermodular
         }
         public async Task<Profesor> Login(string user, string password)
         {
-            string apiUrl = $"https://localhost:8080/api/profesores/login/{user}";
+            string apiUrl = $"http://localhost:8080/api/profesores/login/{user}";
             var content = new StringContent(JsonConvert.SerializeObject(new { user, password }), Encoding.UTF8, "application/json");
             var response = await httpClient.PostAsync(apiUrl, content);
 
             if (!response.IsSuccessStatusCode)
             {
-                if (response.StatusCode == HttpStatusCode.BadRequest)
-                {
-                    throw new GuardiaException("La solicitud no es válida. Verifica los datos enviados.");
-                }
-                else if (response.StatusCode == HttpStatusCode.Unauthorized)
-                {
-                    throw new GuardiaException("Las credenciales son incorrectas. Verifica el usuario y contraseña.");
-                }
-                else
-                {
-                    throw new GuardiaException("Ocurrió un error al procesar la solicitud.");
-                }
+                return null;
             }
-            var profesor = JsonConvert.DeserializeObject<Profesor>(await response.Content.ReadAsStringAsync());
+            Profesor profesor = JsonConvert.DeserializeObject<Profesor>(await response.Content.ReadAsStringAsync());
 
             return profesor;
         }
@@ -46,7 +36,7 @@ namespace ProyectoIntermodular
 
         public async Task<List<Profesor>> GetProfesores()
         {
-            string apiUrl = "https://localhost:8080/api/profesores/listar";
+            string apiUrl = "http://localhost:8080/api/profesores/listar";
             var response = await httpClient.GetAsync(apiUrl);
 
             if (response.IsSuccessStatusCode)
@@ -59,22 +49,23 @@ namespace ProyectoIntermodular
             {
                 if (response.StatusCode == HttpStatusCode.BadRequest)
                 {
-                    throw new GuardiaException("La solicitud no es válida. Verifica los datos enviados.");
+                    MessageBox.Show("La solicitud no es válida. Verifica los datos enviados.", "Aviso", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
                 }
                 else if (response.StatusCode == HttpStatusCode.NotFound)
                 {
-                    throw new GuardiaException("No se encontraron profesores.");
+                    MessageBox.Show("No se encontraron profesores.", "Aviso", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
                 }
                 else
                 {
-                    throw new GuardiaException("Ocurrió un error al procesar la solicitud.");
+                    MessageBox.Show("Ocurrió un error al procesar la solicitud.", "Aviso", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
                 }
+                return null;
             }
         }
 
         public async Task<List<Guardia>> GetGuardiasProfesores(Profesor profesor)
         {
-            string apiUrl = $"https://localhost:8080/api/profesores/getAllGuardias/{profesor.id}";
+            string apiUrl = $"http://localhost:8080/api/profesores/getAllGuardias/{profesor.id}";
             var response = await httpClient.GetAsync(apiUrl);
 
             if (response.IsSuccessStatusCode)
@@ -87,23 +78,24 @@ namespace ProyectoIntermodular
             {
                 if (response.StatusCode == HttpStatusCode.BadRequest)
                 {
-                    throw new GuardiaException("La solicitud no es válida. Verifica los datos enviados.");
+                    MessageBox.Show("La solicitud no es válida. Verifica los datos enviados.", "Aviso", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
                 }
                 else if (response.StatusCode == HttpStatusCode.NotFound)
                 {
-                    throw new GuardiaException("No se encontraron guardias.");
+                    MessageBox.Show("No se encontraron guardias.", "Aviso", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
                 }
                 else
                 {
-                    throw new GuardiaException("Ocurrió un error al procesar la solicitud.");
+                    MessageBox.Show("Ocurrió un error al procesar la solicitud.", "Aviso", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
                 }
+                return null;
             }
         }
 
 
         public async Task<Profesor> ObtenerProfesorID(int id)
         {
-            string apiUrl = $"https://localhost:8080/api/profesores/buscar/{id}";
+            string apiUrl = $"http://localhost:8080/api/profesores/buscar/{id}";
             var response = await httpClient.GetAsync(apiUrl);
 
             if (response.IsSuccessStatusCode)
@@ -115,22 +107,51 @@ namespace ProyectoIntermodular
             {
                 if (response.StatusCode == HttpStatusCode.BadRequest)
                 {
-                    throw new GuardiaException("La solicitud no es válida. Verifica el ID del profesor.");
+                    MessageBox.Show("La solicitud no es válida. Verifica los datos enviados.", "Aviso", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
                 }
                 else if (response.StatusCode == HttpStatusCode.NotFound)
                 {
-                    throw new GuardiaException("No se encontró el profesor con el ID especificado.");
+                    MessageBox.Show("No se encontraron profesores con el Id especificado.", "Aviso", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
                 }
                 else
                 {
-                    throw new GuardiaException("Ocurrió un error al procesar la solicitud.");
+                    MessageBox.Show("Ocurrió un error al procesar la solicitud.", "Aviso", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
                 }
+                return null;
             }
         }
 
+        /*public async Task<Profesor> ObtenerPerfilProfesor(Profesor profesor)
+        {
+            string apiUrl = $"http://localhost:8080/api/profesores/buscar/{profesor.id}";
+            var response = await httpClient.GetAsync(apiUrl);
+
+            if (response.IsSuccessStatusCode)
+            {
+                string profesorJson = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<Profesor>(profesorJson);
+            }
+            else
+            {
+                if (response.StatusCode == HttpStatusCode.BadRequest)
+                {
+                    MessageBox.Show("La solicitud no es válida. Verifica los datos enviados.", "Aviso", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                }
+                else if (response.StatusCode == HttpStatusCode.NotFound)
+                {
+                    MessageBox.Show("No se encontraron profesores con el Id especificado.", "Aviso", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    MessageBox.Show("Ocurrió un error al procesar la solicitud.", "Aviso", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                }
+                return null;
+            }
+        }*/
+
         public async Task<Guardia> CrearGuardia(Guardia guardia)
         {
-            string apiUrl = "https://localhost:8080/api/guardias/crear";
+            string apiUrl = "http://localhost:8080/api/guardias/crear";
             var content = new StringContent(JsonConvert.SerializeObject(guardia), Encoding.UTF8, "application/json");
             var response = await httpClient.PostAsync(apiUrl, content);
 
@@ -138,12 +159,13 @@ namespace ProyectoIntermodular
             {
                 if (response.StatusCode == HttpStatusCode.BadRequest)
                 {
-                    throw new GuardiaException("La solicitud no es válida. Verifica los datos de la guardia.");
+                    MessageBox.Show("La solicitud no es válida. Verifica los datos enviados.", "Aviso", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
                 }
                 else
                 {
-                    throw new GuardiaException("Ocurrió un error al procesar la solicitud.");
+                    MessageBox.Show("Ocurrió un error al procesar la solicitud.", "Aviso", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
                 }
+                return null;
             }
 
             string responseContent = await response.Content.ReadAsStringAsync();
@@ -151,53 +173,53 @@ namespace ProyectoIntermodular
         }
 
 
-        public async Task CambiarEstadoGuardia(int id, EstadoEnum estado)
+        public async Task CambiarEstadoGuardia(int id, string estado)
         {
-            string apiUrl = $"https://localhost:8080/api/guardias/setEstado/{id}";
-            var content = new StringContent(JsonConvert.SerializeObject(new { estado }), Encoding.UTF8, "application/json");
+            string apiUrl = $"http://localhost:8080/api/guardias/setEstado/{id}";
+            var content = new StringContent(JsonConvert.SerializeObject(new{estado}), Encoding.UTF8, "application/json");
             var response = await httpClient.PutAsync(apiUrl, content);
 
             if (!response.IsSuccessStatusCode)
             {
                 if (response.StatusCode == HttpStatusCode.BadRequest)
                 {
-                    throw new GuardiaException("La solicitud no es válida. Verifica los datos enviados.");
+                    MessageBox.Show("La solicitud no es válida. Verifica los datos enviados.", "Aviso", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
                 }
                 else if (response.StatusCode == HttpStatusCode.NotFound)
                 {
-                    throw new GuardiaException("No se encontró la guardia con el ID especificado.");
+                    MessageBox.Show("No se encontraron guardias con el Id especificado.", "Aviso", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
                 }
                 else
                 {
-                    throw new GuardiaException("Ocurrió un error al procesar la solicitud.");
+                    MessageBox.Show("Ocurrió un error al procesar la solicitud.", "Aviso", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
                 }
             }
         }
 
         public async Task BorrarGuardia(int id)
         {
-            string apiUrl = $"https://localhost:8080/api/guardias/borrar/{id}";
+            string apiUrl = $"http://localhost:8080/api/guardias/borrar/{id}";
             var response = await httpClient.DeleteAsync(apiUrl);
 
             if (!response.IsSuccessStatusCode)
             {
                 if (response.StatusCode == HttpStatusCode.BadRequest)
                 {
-                    throw new GuardiaException("La solicitud no es válida. Verifica el ID de la guardia.");
+                    MessageBox.Show("La solicitud no es válida. Verifica los datos enviados.", "Aviso", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
                 }
                 else if (response.StatusCode == HttpStatusCode.NotFound)
                 {
-                    throw new GuardiaException("No se encontró la guardia con el ID especificado.");
+                    MessageBox.Show("No se encontraron guardias con el Id especificado.", "Aviso", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
                 }
                 else
                 {
-                    throw new GuardiaException("Ocurrió un error al procesar la solicitud.");
+                    MessageBox.Show("Ocurrió un error al procesar la solicitud.", "Aviso", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
                 }
             }
         }
         public async Task ActualizarGuardia(Guardia guardia)
         {
-            string apiUrl = $"https://localhost:8080/api/guardias/modificar/{guardia.Id}";
+            string apiUrl = $"http://localhost:8080/api/guardias/modificar/{guardia.Id}";
             var content = new StringContent(JsonConvert.SerializeObject(guardia), Encoding.UTF8, "application/json");
             var response = await httpClient.PutAsync(apiUrl, content);
 
@@ -205,27 +227,28 @@ namespace ProyectoIntermodular
             {
                 if (response.StatusCode == HttpStatusCode.BadRequest)
                 {
-                    throw new GuardiaException("La solicitud no es válida. Verifica los datos enviados.");
+                    MessageBox.Show("La solicitud no es válida. Verifica los datos enviados.", "Aviso", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
                 }
                 else if (response.StatusCode == HttpStatusCode.NotFound)
                 {
-                    throw new GuardiaException("No se encontró la guardia con el ID especificado.");
+                    MessageBox.Show("No se encontraron guardias con el Id especificado.", "Aviso", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
                 }
                 else
                 {
-                    throw new GuardiaException("Ocurrió un error al procesar la solicitud.");
+                    MessageBox.Show("Ocurrió un error al procesar la solicitud.", "Aviso", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
                 }
             }
         }
 
         public async Task<List<Guardia>> ObtenerGuardias()
         {
-            string apiUrl = "https://localhost:8080/api/guardias/listar";
+            string apiUrl = "http://localhost:8080/api/guardias/listar";
             var response = await httpClient.GetAsync(apiUrl);
 
             if (!response.IsSuccessStatusCode)
             {
-                throw new GuardiaException("Ocurrió un error al procesar la solicitud.");
+                MessageBox.Show("Ocurrió un error al procesar la solicitud.", "Aviso", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                return null;
             }
 
             string responseContent = await response.Content.ReadAsStringAsync();
@@ -233,7 +256,7 @@ namespace ProyectoIntermodular
         }
         public async Task<Guardia> ObtenerGuardiaID(int id)
         {
-            string apiUrl = $"https://localhost:8080/api/guardias/buscar/{id}";
+            string apiUrl = $"http://localhost:8080/api/guardias/buscar/{id}";
             var response = await httpClient.GetAsync(apiUrl);
 
             if (response.IsSuccessStatusCode)
@@ -245,16 +268,17 @@ namespace ProyectoIntermodular
             {
                 if (response.StatusCode == HttpStatusCode.BadRequest)
                 {
-                    throw new GuardiaException("La solicitud no es válida. Verifica el ID de la guardia.");
+                    MessageBox.Show("La solicitud no es válida. Verifica los datos enviados.", "Aviso", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
                 }
                 else if (response.StatusCode == HttpStatusCode.NotFound)
                 {
-                    throw new GuardiaException("No se encontró la guardia con el ID especificado.");
+                    MessageBox.Show("No se encontraron guardias con el Id especificado.", "Aviso", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
                 }
                 else
                 {
-                    throw new GuardiaException("Ocurrió un error al procesar la solicitud.");
+                    MessageBox.Show("Ocurrió un error al procesar la solicitud.", "Aviso", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
                 }
+                return null;
             }
         }
     }

@@ -17,6 +17,7 @@ namespace ProyectoIntermodular
         public FrmPropiedadesGuardia()
         {
             InitializeComponent();
+            guardia=new Guardia();
             _negocio=new Negocio();
             this.DialogResult = DialogResult.Cancel;
 
@@ -34,7 +35,7 @@ namespace ProyectoIntermodular
             tsmiAutocompletar.Visible = false;
 
             dtpFecha.Value = guardia.Fecha;
-            txtHorario.Text = guardia.IdHorario.ToString();
+            txtHorario.Text = guardia.HorarioBean.ToString();
             cmbDiaSemana.SelectedIndex = guardia.DiaSemana-1;
             txtHora.Text= guardia.Hora.ToString();
             cmbGrupo.Text = guardia.Grupo;
@@ -50,11 +51,11 @@ namespace ProyectoIntermodular
                     cmbEstado.SelectedIndex = 2;
                     break;
             }
-            txtAviso.Text=guardia.IdAviso.ToString();
+            txtAviso.Text=guardia.AvisosGuardias.ToString();
             cmbAula.Text=guardia.Aula;
             txtObservaciones.Text = guardia.Observaciones;
 
-            añadirProfesores(guardia.IdProfesorFalta,guardia.IdProfesorGuardia);
+            añadirProfesores(guardia.Profesor1,guardia.Profesor2);
 
         }
 
@@ -107,7 +108,7 @@ namespace ProyectoIntermodular
             if (validar())
             {
                 guardia.Fecha = dtpFecha.Value;
-                guardia.IdHorario =Convert.ToInt32( txtHorario.Text);
+                guardia.HorarioBean =Convert.ToInt32( txtHorario.Text);
                 guardia.DiaSemana = cmbDiaSemana.SelectedIndex + 1;
                 guardia.Hora = Convert.ToInt32(txtHora.Text);
                 guardia.Grupo = cmbGrupo.Text;
@@ -123,15 +124,17 @@ namespace ProyectoIntermodular
                         guardia.Estado = EstadoEnum.A;
                         break;
                 }
-                guardia.IdAviso=Convert.ToInt32(txtAviso.Text);
+                if (txtAviso.Text != string.Empty) { 
+                    guardia.AvisosGuardias=Convert.ToInt32(txtAviso.Text);
+                }
                 guardia.Aula = cmbAula.Text;
                 guardia.Observaciones = txtObservaciones.Text;
 
                 if (txtProfeFalta.Text != String.Empty)
                 {
-                    guardia.IdProfesorGuardia = (int)txtProfeGuardia.Tag;
+                    guardia.Profesor2 = (int)txtProfeGuardia.Tag;
                 }
-                guardia.IdProfesorFalta = (int)txtProfeFalta.Tag;
+                guardia.Profesor1 = (int)txtProfeFalta.Tag;
 
                 this.DialogResult = DialogResult.OK;
                 this.Close();
@@ -169,12 +172,6 @@ namespace ProyectoIntermodular
                 txtHora.Focus();
                 return false;
             }
-            if (txtAviso.Text == string.Empty)
-            {
-                MessageBox.Show("El campo Avisoa es obligatorio", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                txtAviso.Focus();
-                return false;
-            }
             return true;
         }
 
@@ -190,7 +187,7 @@ namespace ProyectoIntermodular
                     
                     if (guardia != null)
                     {
-                        txtHorario.Text = guardia.IdHorario.ToString();
+                        txtHorario.Text = guardia.HorarioBean.ToString();
                         cmbDiaSemana.SelectedIndex = guardia.DiaSemana - 1;
                         cmbGrupo.Text = guardia.Grupo;
                         switch (guardia.Estado)
@@ -205,14 +202,14 @@ namespace ProyectoIntermodular
                                 cmbEstado.SelectedIndex = 2;
                                 break;
                         }
-                        txtAviso.Text = guardia.IdAviso.ToString();
+                        txtAviso.Text = guardia.AvisosGuardias.ToString();
                         cmbAula.Text = guardia.Aula;
                         txtObservaciones.Text = guardia.Observaciones;
-                        Profesor profeGuardia = await _negocio.ObtenerProfesorID(guardia.IdProfesorGuardia);
+                        Profesor profeGuardia = await _negocio.ObtenerProfesorID(guardia.Profesor2);
                         if (profeGuardia != null)
                         {
                             txtProfeGuardia.Text = profeGuardia.nombre + ", " + profeGuardia.ape1 + " " + profeGuardia.ape2;
-                            txtProfeGuardia.Tag = guardia.IdProfesorGuardia;
+                            txtProfeGuardia.Tag = guardia.Profesor2;
                         }
                     }
                 }

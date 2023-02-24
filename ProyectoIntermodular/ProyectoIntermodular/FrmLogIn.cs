@@ -23,7 +23,7 @@ namespace ProyectoIntermodular
 
         private async void btnLogIn_Click(object sender, EventArgs e)
         {
-            Profesor profesor = await negocio.Login(txtUsuario.Text,txtContraseña.Text);
+            Profesor profesor = await negocio.Login(txtUsuario.Text,Encriptar(txtContraseña.Text));
             if (profesor!=null )
             {
                 FrmContenedor contenedor = new FrmContenedor();
@@ -33,6 +33,23 @@ namespace ProyectoIntermodular
             else
             {
                 grpError.Visible = true;
+                txtContraseña.Text = string.Empty;
+                txtUsuario.Text = string.Empty;
+
+                //pruebas
+                FrmContenedor contenedor = new FrmContenedor();
+                this.Hide();
+                contenedor.ShowDialog();
+                if(contenedor.DialogResult== DialogResult.OK)
+                {
+                    this.Show();
+                }
+                else
+                {
+                    this.Close();
+                }
+                
+                
             }
         }
 
