@@ -36,13 +36,13 @@ namespace ProyectoIntermodular
                 string enumText=string.Empty;
                 switch (guardia.Estado)
                 {
-                    case EstadoEnum.R:
+                    case "R":
                         enumText = "Realizado";
                         break;
-                    case EstadoEnum.C:
+                    case "C":
                         enumText = "Confirmada y pendiente";
                         break;
-                    case EstadoEnum.A:
+                    case "A":
                         enumText = "Anulada";
                         break;
                 }
@@ -73,7 +73,7 @@ namespace ProyectoIntermodular
         private async void tsmiCrear_Click(object sender, EventArgs e)
         {
             Guardia guardia = new Guardia();
-            FrmPropiedadesGuardia frmProp=new FrmPropiedadesGuardia();
+            FrmPropiedadesGuardia frmProp=new FrmPropiedadesGuardia(guardia);
             frmProp.ShowDialog();
 
             if (frmProp.DialogResult == DialogResult.OK)

@@ -27,8 +27,17 @@ namespace ProyectoIntermodular
             if (profesor!=null )
             {
                 FrmContenedor contenedor = new FrmContenedor();
+                this.Hide();
                 contenedor.ShowDialog();
-                
+                if (contenedor.DialogResult == DialogResult.OK)
+                {
+                    this.Show();
+                }
+                else
+                {
+                    this.Close();
+                }
+
             }
             else
             {
@@ -48,6 +57,7 @@ namespace ProyectoIntermodular
                 {
                     this.Close();
                 }
+                // pruebas
                 
                 
             }

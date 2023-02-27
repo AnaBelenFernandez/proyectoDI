@@ -11,7 +11,7 @@ namespace ProyectoIntermodular
         public int Id { get ; set; }
         public int Profesor1 { get; set; }
         public int Profesor2 { get; set; }
-        public EstadoEnum Estado { get; set; }
+        public string Estado { get; set; }
         public DateTime Fecha { get; set; }
         public int HorarioBean { get; set; }
         public int DiaSemana { get; set; }

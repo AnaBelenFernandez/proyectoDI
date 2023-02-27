@@ -13,7 +13,7 @@ namespace ProyectoIntermodular
     public partial class FrmPropiedadesGuardia : Form
     {
         private Negocio _negocio;
-        private Guardia guardia;
+        public Guardia guardia;
         public FrmPropiedadesGuardia()
         {
             InitializeComponent();
@@ -34,28 +34,41 @@ namespace ProyectoIntermodular
             _negocio = new Negocio();
             tsmiAutocompletar.Visible = false;
 
-            dtpFecha.Value = guardia.Fecha;
-            txtHorario.Text = guardia.HorarioBean.ToString();
-            cmbDiaSemana.SelectedIndex = guardia.DiaSemana-1;
-            txtHora.Text= guardia.Hora.ToString();
-            cmbGrupo.Text = guardia.Grupo;
-            switch (guardia.Estado)
+            if (guardia.Id != 0)
             {
-                case EstadoEnum.R:
-                    cmbEstado.SelectedIndex=0;
-                    break;
-                case EstadoEnum.C:
-                    cmbEstado.SelectedIndex = 1;
-                    break;
-                case EstadoEnum.A:
-                    cmbEstado.SelectedIndex = 2;
-                    break;
-            }
-            txtAviso.Text=guardia.AvisosGuardias.ToString();
-            cmbAula.Text=guardia.Aula;
-            txtObservaciones.Text = guardia.Observaciones;
+                tsmiAutocompletar.Visible = true;
+                dtpFecha.Value = guardia.Fecha;
+                txtHorario.Text = guardia.HorarioBean.ToString();
+                cmbDiaSemana.SelectedIndex = guardia.DiaSemana - 1;
+                txtHora.Text = guardia.Hora.ToString();
+                cmbGrupo.Text = guardia.Grupo;
+                switch (guardia.Estado)
+                {
+                    case "R":
+                        cmbEstado.SelectedIndex = 0;
+                        break;
+                    case "c":
+                        cmbEstado.SelectedIndex = 1;
+                        break;
+                    case "A":
+                        cmbEstado.SelectedIndex = 2;
+                        break;
+                }
+                txtAviso.Text = guardia.AvisosGuardias.ToString();
+                cmbAula.Text = guardia.Aula;
+                txtObservaciones.Text = guardia.Observaciones;
 
-            añadirProfesores(guardia.Profesor1,guardia.Profesor2);
+                añadirProfesores(guardia.Profesor1, guardia.Profesor2);
+            }
+            else
+            {
+                cmbAula.SelectedIndex = 0;
+                cmbDiaSemana.SelectedIndex = 0;
+                cmbEstado.SelectedIndex = 0;
+                cmbGrupo.SelectedIndex = 0;
+            }
+
+            
 
         }
 
@@ -115,13 +128,13 @@ namespace ProyectoIntermodular
                 switch (cmbEstado.Text)
                 {
                     case "Realizada":
-                        guardia.Estado = EstadoEnum.R;
+                        guardia.Estado = "R";
                         break;
                     case "Confirmada":
-                        guardia.Estado = EstadoEnum.C;
+                        guardia.Estado = "C";
                         break;
                     case "Anulada":
-                        guardia.Estado = EstadoEnum.A;
+                        guardia.Estado = "A";
                         break;
                 }
                 if (txtAviso.Text != string.Empty) { 
@@ -132,7 +145,7 @@ namespace ProyectoIntermodular
 
                 if (txtProfeFalta.Text != String.Empty)
                 {
-                    guardia.Profesor2 = (int)txtProfeGuardia.Tag;
+                    guardia.Profesor2 = (int) txtProfeGuardia.Tag;
                 }
                 guardia.Profesor1 = (int)txtProfeFalta.Tag;
 
@@ -192,13 +205,13 @@ namespace ProyectoIntermodular
                         cmbGrupo.Text = guardia.Grupo;
                         switch (guardia.Estado)
                         {
-                            case EstadoEnum.R:
+                            case "R":
                                 cmbEstado.SelectedIndex = 0;
                                 break;
-                            case EstadoEnum.C:
+                            case "C":
                                 cmbEstado.SelectedIndex = 1;
                                 break;
-                            case EstadoEnum.A:
+                            case "A":
                                 cmbEstado.SelectedIndex = 2;
                                 break;
                         }
