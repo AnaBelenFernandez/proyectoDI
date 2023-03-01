@@ -46,17 +46,17 @@ namespace ProyectoIntermodular
                 txtUsuario.Text = string.Empty;
 
                 //pruebas
-                FrmContenedor contenedor = new FrmContenedor();
-                this.Hide();
-                contenedor.ShowDialog();
-                if(contenedor.DialogResult== DialogResult.OK)
-                {
-                    this.Show();
-                }
-                else
-                {
-                    this.Close();
-                }
+                //FrmContenedor contenedor = new FrmContenedor();
+                //this.Hide();
+                //contenedor.ShowDialog();
+                //if(contenedor.DialogResult== DialogResult.OK)
+                //{
+                //    this.Show();
+                //}
+                //else
+                //{
+                //    this.Close();
+                //}
                 // pruebas
                 
                 
@@ -65,29 +65,15 @@ namespace ProyectoIntermodular
 
         private string Encriptar(String texto)
         {
-            string key = "key";
-
-            byte[] keyArray;
-            byte[] Arreglo_a_Cifrar =
-            UTF8Encoding.UTF8.GetBytes(texto);
-            MD5CryptoServiceProvider hashmd5 =
-            new MD5CryptoServiceProvider();
-            keyArray = hashmd5.ComputeHash(
-            UTF8Encoding.UTF8.GetBytes(key));
-            hashmd5.Clear();
-            TripleDESCryptoServiceProvider tdes =
-            new TripleDESCryptoServiceProvider();
-            tdes.Key = keyArray;
-            tdes.Mode = CipherMode.ECB;
-            tdes.Padding = PaddingMode.PKCS7;
-            ICryptoTransform cTransform =
-            tdes.CreateEncryptor();
-            byte[] ArrayResultado =
-            cTransform.TransformFinalBlock(Arreglo_a_Cifrar,
-            0, Arreglo_a_Cifrar.Length);
-            tdes.Clear();
-            return Convert.ToBase64String(ArrayResultado,
-            0, ArrayResultado.Length);
+            MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();
+            byte[] array= Encoding.UTF8.GetBytes(texto );
+            array=md5.ComputeHash(array); 
+            StringBuilder sb=new StringBuilder();
+            foreach(byte b in array)
+            {
+                sb.Append(b.ToString("x2").ToLower());
+            }
+            return sb.ToString();
         }
     }
 }

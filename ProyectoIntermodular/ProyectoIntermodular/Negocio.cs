@@ -19,9 +19,8 @@ namespace ProyectoIntermodular
         }
         public async Task<Profesor> Login(string user, string pwd)
         {
-            string apiUrl = $"http://localhost:8080/api/profesores/login/{user}";
-            var content = new StringContent(JsonConvert.SerializeObject(new { user, pwd }), Encoding.UTF8, "application/json");
-            var response = await httpClient.PostAsync(apiUrl, content);
+            string apiUrl = "http://localhost:8080/api/profesores/login/{user}?pwd="+pwd+"&user="+user;
+            var response = await httpClient.PostAsync(apiUrl, null);
 
             if (!response.IsSuccessStatusCode)
             {
@@ -152,6 +151,7 @@ namespace ProyectoIntermodular
         public async Task<Guardia> CrearGuardia(Guardia guardia)
         {
             string apiUrl = "http://localhost:8080/api/guardias/crear";
+            //string apiUrl = "http://localhost:8080/api/profesores/login/{user}?pwd=" + pwd + "&user=" + user;
             var content = new StringContent(JsonConvert.SerializeObject(guardia).ToString(), Encoding.UTF8, "application/json");
             var response = await httpClient.PostAsync(apiUrl, content);
 

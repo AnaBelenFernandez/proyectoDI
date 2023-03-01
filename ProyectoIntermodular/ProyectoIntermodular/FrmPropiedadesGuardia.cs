@@ -143,7 +143,7 @@ namespace ProyectoIntermodular
                 guardia.Aula = cmbAula.Text;
                 guardia.Observaciones = txtObservaciones.Text;
 
-                if (txtProfeFalta.Text != String.Empty)
+                if (txtProfeGuardia.Text != String.Empty)
                 {
                     guardia.Profesor2 = (int) txtProfeGuardia.Tag;
                 }

@@ -134,6 +134,7 @@
     <Compile Include="GuardiaException.cs" />
     <Compile Include="Negocio.cs" />
     <Compile Include="Profesor.cs" />
+    <Compile Include="ProfesorTienePerfil.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FrmBuscadorProfesor.resx">
