@@ -30,6 +30,8 @@
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.archivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiLogOut = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmiSalir = new System.Windows.Forms.ToolStripMenuItem();
             this.mantenimientoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiProfesores = new System.Windows.Forms.ToolStripMenuItem();
@@ -39,8 +41,6 @@
             this.tsmiCascada = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiHorizontal = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmVertical = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiLogOut = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -67,6 +67,18 @@
             this.archivoToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
             this.archivoToolStripMenuItem.Text = "Archivo";
             // 
+            // tsmiLogOut
+            // 
+            this.tsmiLogOut.Name = "tsmiLogOut";
+            this.tsmiLogOut.Size = new System.Drawing.Size(180, 22);
+            this.tsmiLogOut.Text = "Log Out";
+            this.tsmiLogOut.Click += new System.EventHandler(this.tsmiLogOut_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
+            // 
             // tsmiSalir
             // 
             this.tsmiSalir.Name = "tsmiSalir";
@@ -87,19 +99,19 @@
             // tsmiProfesores
             // 
             this.tsmiProfesores.Name = "tsmiProfesores";
-            this.tsmiProfesores.Size = new System.Drawing.Size(180, 22);
+            this.tsmiProfesores.Size = new System.Drawing.Size(129, 22);
             this.tsmiProfesores.Text = "Profesores";
             // 
             // tsmiHorarios
             // 
             this.tsmiHorarios.Name = "tsmiHorarios";
-            this.tsmiHorarios.Size = new System.Drawing.Size(180, 22);
+            this.tsmiHorarios.Size = new System.Drawing.Size(129, 22);
             this.tsmiHorarios.Text = "Horarios";
             // 
             // tsmiGuardias
             // 
             this.tsmiGuardias.Name = "tsmiGuardias";
-            this.tsmiGuardias.Size = new System.Drawing.Size(180, 22);
+            this.tsmiGuardias.Size = new System.Drawing.Size(129, 22);
             this.tsmiGuardias.Text = "Guardias";
             this.tsmiGuardias.Click += new System.EventHandler(this.tsmiGuardias_Click);
             // 
@@ -134,18 +146,6 @@
             this.tsmVertical.Text = "Vertical";
             this.tsmVertical.Click += new System.EventHandler(this.tsmVertical_Click);
             // 
-            // tsmiLogOut
-            // 
-            this.tsmiLogOut.Name = "tsmiLogOut";
-            this.tsmiLogOut.Size = new System.Drawing.Size(180, 22);
-            this.tsmiLogOut.Text = "Log Out";
-            this.tsmiLogOut.Click += new System.EventHandler(this.tsmiLogOut_Click);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
-            // 
             // FrmContenedor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -154,7 +154,7 @@
             this.Controls.Add(this.menuStrip1);
             this.IsMdiContainer = true;
             this.Name = "FrmContenedor";
-            this.Text = "Form1";
+            this.Text = "Contenedor";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);

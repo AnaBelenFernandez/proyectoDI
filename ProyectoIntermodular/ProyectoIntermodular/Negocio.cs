@@ -64,7 +64,7 @@ namespace ProyectoIntermodular
 
         public async Task<List<Guardia>> GetGuardiasProfesores(Profesor profesor)
         {
-            string apiUrl = $"http://localhost:8080/api/profesores/getAllGuardias/{profesor.id}";
+            string apiUrl = $"http://localhost:8080/api/guardias/getAllGuardias/{profesor.id}?id="+profesor.id;
             var response = await httpClient.GetAsync(apiUrl);
 
             if (response.IsSuccessStatusCode)
@@ -120,38 +120,26 @@ namespace ProyectoIntermodular
             }
         }
 
-        /*public async Task<Profesor> ObtenerPerfilProfesor(Profesor profesor)
+        public async Task<bool> ObtenerPerfilProfesor(Profesor profesor)
         {
-            string apiUrl = $"http://localhost:8080/api/profesores/buscar/{profesor.id}";
+            string apiUrl = "http://localhost:8080/api/profesorTienePerfil/buscarPerfil/{profesor}?id="+profesor.id;
+            //"http://localhost:8080/api/profesores/login/{user}?pwd=" + pwd + "&user=" + user;
             var response = await httpClient.GetAsync(apiUrl);
 
-            if (response.IsSuccessStatusCode)
+            if (response.IsSuccessStatusCode && response.StatusCode==HttpStatusCode.OK)
             {
-                string profesorJson = await response.Content.ReadAsStringAsync();
-                return JsonConvert.DeserializeObject<Profesor>(profesorJson);
+                
+                return true;
             }
             else
             {
-                if (response.StatusCode == HttpStatusCode.BadRequest)
-                {
-                    MessageBox.Show("La solicitud no es válida. Verifica los datos enviados.", "Aviso", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
-                }
-                else if (response.StatusCode == HttpStatusCode.NotFound)
-                {
-                    MessageBox.Show("No se encontraron profesores con el Id especificado.", "Aviso", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
-                }
-                else
-                {
-                    MessageBox.Show("Ocurrió un error al procesar la solicitud.", "Aviso", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
-                }
-                return null;
+                return false;
             }
-        }*/
+        }
 
         public async Task<Guardia> CrearGuardia(Guardia guardia)
         {
             string apiUrl = "http://localhost:8080/api/guardias/crear";
-            //string apiUrl = "http://localhost:8080/api/profesores/login/{user}?pwd=" + pwd + "&user=" + user;
             var content = new StringContent(JsonConvert.SerializeObject(guardia).ToString(), Encoding.UTF8, "application/json");
             var response = await httpClient.PostAsync(apiUrl, content);
 

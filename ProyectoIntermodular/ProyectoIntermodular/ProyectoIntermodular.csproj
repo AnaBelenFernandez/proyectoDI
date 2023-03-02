@@ -131,7 +131,6 @@
       <DependentUpon>FrmPropiedadesGuardia.cs</DependentUpon>
     </Compile>
     <Compile Include="Guardia.cs" />
-    <Compile Include="GuardiaException.cs" />
     <Compile Include="Negocio.cs" />
     <Compile Include="Profesor.cs" />
     <Compile Include="ProfesorTienePerfil.cs" />

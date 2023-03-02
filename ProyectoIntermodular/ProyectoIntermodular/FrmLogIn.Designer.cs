@@ -113,7 +113,7 @@
             this.Controls.Add(this.txtContraseña);
             this.Controls.Add(this.txtUsuario);
             this.Name = "FrmLogIn";
-            this.Text = "Form1";
+            this.Text = "LogIn";
             this.grpError.ResumeLayout(false);
             this.grpError.PerformLayout();
             this.ResumeLayout(false);

@@ -36,32 +36,33 @@ namespace ProyectoIntermodular
 
             if (guardia.Id != 0)
             {
-                tsmiAutocompletar.Visible = true;
+                
                 dtpFecha.Value = guardia.Fecha;
-                txtHorario.Text = guardia.HorarioBean.ToString();
+                txtHorario.Text = guardia.Horario.ToString();
                 cmbDiaSemana.SelectedIndex = guardia.DiaSemana - 1;
                 txtHora.Text = guardia.Hora.ToString();
                 cmbGrupo.Text = guardia.Grupo;
                 switch (guardia.Estado)
                 {
-                    case "R":
+                    case EstadoEnum.R:
                         cmbEstado.SelectedIndex = 0;
                         break;
-                    case "c":
+                    case EstadoEnum.C:
                         cmbEstado.SelectedIndex = 1;
                         break;
-                    case "A":
+                    case EstadoEnum.A:
                         cmbEstado.SelectedIndex = 2;
                         break;
                 }
-                txtAviso.Text = guardia.AvisosGuardias.ToString();
+                txtAviso.Text = guardia.Aviso.ToString();
                 cmbAula.Text = guardia.Aula;
                 txtObservaciones.Text = guardia.Observaciones;
 
-                añadirProfesores(guardia.Profesor1, guardia.Profesor2);
+                añadirProfesores(guardia.ProfesorFalta, (int)guardia.ProfesorGuardia);
             }
             else
             {
+                tsmiAutocompletar.Visible = true;
                 cmbAula.SelectedIndex = 0;
                 cmbDiaSemana.SelectedIndex = 0;
                 cmbEstado.SelectedIndex = 0;
@@ -121,33 +122,33 @@ namespace ProyectoIntermodular
             if (validar())
             {
                 guardia.Fecha = dtpFecha.Value;
-                guardia.HorarioBean =Convert.ToInt32( txtHorario.Text);
+                guardia.Horario =Convert.ToInt32( txtHorario.Text);
                 guardia.DiaSemana = cmbDiaSemana.SelectedIndex + 1;
                 guardia.Hora = Convert.ToInt32(txtHora.Text);
                 guardia.Grupo = cmbGrupo.Text;
                 switch (cmbEstado.Text)
                 {
                     case "Realizada":
-                        guardia.Estado = "R";
+                        guardia.Estado = EstadoEnum.R;
                         break;
                     case "Confirmada":
-                        guardia.Estado = "C";
+                        guardia.Estado = EstadoEnum.C;
                         break;
                     case "Anulada":
-                        guardia.Estado = "A";
+                        guardia.Estado = EstadoEnum.A;
                         break;
                 }
                 if (txtAviso.Text != string.Empty) { 
-                    guardia.AvisosGuardias=Convert.ToInt32(txtAviso.Text);
+                    guardia.Aviso =Convert.ToInt32(txtAviso.Text);
                 }
                 guardia.Aula = cmbAula.Text;
                 guardia.Observaciones = txtObservaciones.Text;
 
                 if (txtProfeGuardia.Text != String.Empty)
                 {
-                    guardia.Profesor2 = (int) txtProfeGuardia.Tag;
+                    guardia.ProfesorGuardia = (int) txtProfeGuardia.Tag;
                 }
-                guardia.Profesor1 = (int)txtProfeFalta.Tag;
+                guardia.ProfesorFalta = (int)txtProfeFalta.Tag;
 
                 this.DialogResult = DialogResult.OK;
                 this.Close();
@@ -196,33 +197,36 @@ namespace ProyectoIntermodular
                 if (profesor != null)
                 {
                     List<Guardia> guardias = await _negocio.GetGuardiasProfesores(profesor);
-                    Guardia guardia = guardias.FirstOrDefault(x => x.Fecha == dtpFecha.Value && x.Hora == Convert.ToInt32(txtHora.Text));
-                    
-                    if (guardia != null)
+                    if(guardias!= null)
                     {
-                        txtHorario.Text = guardia.HorarioBean.ToString();
-                        cmbDiaSemana.SelectedIndex = guardia.DiaSemana - 1;
-                        cmbGrupo.Text = guardia.Grupo;
-                        switch (guardia.Estado)
+                        Guardia guardia = guardias.FirstOrDefault(x => x.Fecha.Date == dtpFecha.Value.Date && x.Hora == Convert.ToInt32(txtHora.Text));
+
+                        if (guardia != null)
                         {
-                            case "R":
-                                cmbEstado.SelectedIndex = 0;
-                                break;
-                            case "C":
-                                cmbEstado.SelectedIndex = 1;
-                                break;
-                            case "A":
-                                cmbEstado.SelectedIndex = 2;
-                                break;
-                        }
-                        txtAviso.Text = guardia.AvisosGuardias.ToString();
-                        cmbAula.Text = guardia.Aula;
-                        txtObservaciones.Text = guardia.Observaciones;
-                        Profesor profeGuardia = await _negocio.ObtenerProfesorID(guardia.Profesor2);
-                        if (profeGuardia != null)
-                        {
-                            txtProfeGuardia.Text = profeGuardia.nombre + ", " + profeGuardia.ape1 + " " + profeGuardia.ape2;
-                            txtProfeGuardia.Tag = guardia.Profesor2;
+                            txtHorario.Text = guardia.Horario.ToString();
+                            cmbDiaSemana.SelectedIndex = guardia.DiaSemana - 1;
+                            cmbGrupo.Text = guardia.Grupo;
+                            switch (guardia.Estado)
+                            {
+                                case EstadoEnum.R:
+                                    cmbEstado.SelectedIndex = 0;
+                                    break;
+                                case EstadoEnum.C:
+                                    cmbEstado.SelectedIndex = 1;
+                                    break;
+                                case EstadoEnum.A:
+                                    cmbEstado.SelectedIndex = 2;
+                                    break;
+                            }
+                            txtAviso.Text = guardia.Aviso.ToString();
+                            cmbAula.Text = guardia.Aula;
+                            txtObservaciones.Text = guardia.Observaciones;
+                            Profesor profeGuardia = await _negocio.ObtenerProfesorID((int)guardia.ProfesorGuardia);
+                            if (profeGuardia != null)
+                            {
+                                txtProfeGuardia.Text = profeGuardia.nombre + ", " + profeGuardia.ape1 + " " + profeGuardia.ape2;
+                                txtProfeGuardia.Tag = guardia.ProfesorGuardia;
+                            }
                         }
                     }
                 }

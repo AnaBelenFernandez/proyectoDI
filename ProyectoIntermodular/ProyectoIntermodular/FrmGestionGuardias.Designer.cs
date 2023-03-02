@@ -245,7 +245,7 @@
             // tsmiCrear
             // 
             this.tsmiCrear.Name = "tsmiCrear";
-            this.tsmiCrear.Size = new System.Drawing.Size(102, 22);
+            this.tsmiCrear.Size = new System.Drawing.Size(180, 22);
             this.tsmiCrear.Text = "Crear";
             this.tsmiCrear.Click += new System.EventHandler(this.tsmiCrear_Click);
             // 
@@ -258,7 +258,7 @@
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.menuStrip1);
             this.Name = "FrmGestionGuardias";
-            this.Text = "FrmGestionGuardias";
+            this.Text = "Gestion de Guardias";
             this.cmsContextual.ResumeLayout(false);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();

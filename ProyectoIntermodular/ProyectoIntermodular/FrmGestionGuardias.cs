@@ -36,18 +36,18 @@ namespace ProyectoIntermodular
                 string enumText=string.Empty;
                 switch (guardia.Estado)
                 {
-                    case "R":
+                    case EstadoEnum.R:
                         enumText = "Realizado";
                         break;
-                    case "C":
+                    case EstadoEnum.C:
                         enumText = "Confirmada y pendiente";
                         break;
-                    case "A":
+                    case EstadoEnum.A:
                         enumText = "Anulada";
                         break;
                 }
-                Profesor profeFalta = await _negocio.ObtenerProfesorID(guardia.Profesor1);
-                Profesor profeGuardia = await _negocio.ObtenerProfesorID(guardia.Profesor2);
+                Profesor profeFalta = await _negocio.ObtenerProfesorID(guardia.ProfesorFalta);
+                Profesor profeGuardia = await _negocio.ObtenerProfesorID((int)guardia.ProfesorGuardia);
                 string profesorGuardia = String.Empty;
                 string profesorFalta = String.Empty;
                 bool cubierta = false;
